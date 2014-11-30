@@ -61,7 +61,9 @@ gulp.task('test', function(){ //TODO could growl the result of this task...
   gulp.src(paths.tests.src)
   .pipe(plugins.concat('test-generated.js'))
   .pipe(gulp.dest(paths.tests.dest))
-  .pipe(plugins.shell(['make test-browser']));
+  .pipe(plugins.shell([
+    './node_modules/.bin/mocha-phantomjs --reporter spec --timeout 2000 test/testrunner.html'
+  ]));
 });
 
 // Uglify JS
@@ -71,11 +73,6 @@ gulp.task('uglify', function(){
     .pipe(plugins.rename("binoculars.min.js"))
     .pipe(gulp.dest(paths.scripts.dest));
 });
-
-// Test
-gulp.task('test-watch', plugins.shell.task([
-  'make test'
-]));
 
 // Watch Our Files
 gulp.task('watch', function() {
