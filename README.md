@@ -1,16 +1,16 @@
 Binoculars  oo
-==============
+===============
 
-Binoculars allow you to see distant hard to reach data. The goal? If something is accessable somehow, binoculars want to give you access to it.
+Binoculars allow you to see distant hard to reach data. The goal? If some data is accessable somehow, then Binoculars want to give you access to it.
 
 Oh yeah, here are the current main usecases for Binoculars:
 
 * Read color and brightness data from &lt;video&gt; elements in order to do stuff
-* Stylesheet shuffling based on color or brightness level in the enviroment of the beholder.
+* Stylesheet shuffling based on color or brightness level in the enviroment of the user.
 
 
 Assembling your Binoculars
--------------------
+---------------------------
 
 If you are not familiar with gulp then chek out [their website](http://gulpjs.com/).
 
@@ -25,7 +25,7 @@ To execute all unit tests, do:
 
 
 Things to come
-----------------
+---------------
 
 * Hopefully reading audio data from users
 * Documentation
@@ -33,7 +33,7 @@ Things to come
 
 
 Note
-----------------
+-----
 
 This technology is relatively new and has
 limited browser support (Firefox and Chrome last few versions)
