@@ -12,24 +12,23 @@ Oh yeah, here are the current main usecases for Binoculars:
 Assembling your Binoculars
 ---------------------------
 
-If you are not familiar with gulp then chek out [their website](http://gulpjs.com/).
+If you are not familiar with gulp then [check them out](http://gulpjs.com/).
 
 	npm install
-	bower install
-	gulp --dev
-	npm start
+	gulp
 
 To execute all unit tests, do:
 
-	npm test
+	gulp test
 
 
 Things to come
 ---------------
 
 * Hopefully reading audio data from users
+* More ways to catch more data
 * Documentation
-* Rigorous unit testing
+* More rigorous unit testing
 
 
 Note
@@ -38,8 +37,9 @@ Note
 This technology is relatively new and has
 limited browser support (Firefox and Chrome last few versions)
 
-If you want to know more about the techonolies at work here see this [html5rocks](http://www.html5rocks.com/en/tutorials/getusermedia/intro/) TL;DR or the W3C
-	[Device APIs Working Group](http://www.w3.org/2009/dap/)
+If you want some more info see this 
+[html5rocks](http://www.html5rocks.com/en/tutorials/getusermedia/intro/) article or the 
+W3C [Device APIs Working Group](http://www.w3.org/2009/dap/)
 
 Thanks
 -------
