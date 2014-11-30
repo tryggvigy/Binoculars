@@ -1,0 +1,3 @@
+oo.algorithms = {};
+
+import "quantize";

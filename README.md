@@ -1,0 +1,50 @@
+Binoculars  oo
+==============
+
+Binoculars allow you to see distant hard to reach data. The goal? If something is accessable somehow, binoculars want to give you access to it.
+
+Oh yeah, here are the current main usecases for Binoculars:
+
+* Read color and brightness data from &lt;video&gt; elements in order to do stuff
+* Stylesheet shuffling based on color or brightness level in the enviroment of the beholder.
+
+
+Assembling your Binoculars
+-------------------
+
+If you are not familiar with gulp then chek out [their website](http://gulpjs.com/).
+
+	npm install
+	bower install
+	gulp --dev
+	npm start
+
+To execute all unit tests, do:
+
+	npm test
+
+
+Things to come
+----------------
+
+* Hopefully reading audio data from users
+* Documentation
+* Rigorous unit testing
+
+
+Note
+----------------
+
+This technology is relatively new and has
+limited browser support (Firefox and Chrome last few versions)
+
+If you want to know more about the techonolies at work here see this [html5rocks](http://www.html5rocks.com/en/tutorials/getusermedia/intro/) TL;DR or the W3C
+	[Device APIs Working Group](http://www.w3.org/2009/dap/)
+
+Thanks
+-------
+* [Lokesh Dhakar](https://github.com/lokesh) -
+	For creating [color-thief](https://github.com/lokesh/color-thief)
+* [Nick Rabinowitz](https://github.com/nrabinowitz) -
+	For implementing the MMCQ algorithm in Javascript:
+	[quantize.js](https://gist.github.com/nrabinowitz/1104622)

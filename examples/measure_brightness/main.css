@@ -1,0 +1,17 @@
+video {
+	display: initial;
+}
+
+html { margin: 0;}
+
+.booleans {
+	position: absolute;
+	right: 300px;
+	top: 100px;
+}
+
+.colors {
+	margin-top: 3px;
+	margin-left: 2px;
+	width: 1000px;
+}
