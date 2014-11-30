@@ -159,11 +159,6 @@ p img {
 
 pre, code {
   width: 100%;
-  color: #222;
-  background-color: #fff;
-
-  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
-  font-size: 14px;
 
   border-radius: 2px;
   -moz-border-radius: 2px;
@@ -422,4 +417,9 @@ Small Device Styles
     font-size: 11px;
   }
 
+}
+
+i {
+  font-style: italic;
+  font-weight: bold;
 }
