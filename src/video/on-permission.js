@@ -10,12 +10,14 @@ oo.video.onPermission = function(listener) {
 }
 
 oo.video.gotPermission = function() {
-  oo.video._hasPermission = true;
-  if ( oo.video._listenerQueue ) {
-    var fn, i = 0;
-    while ( (fn = oo.video._listenerQueue[ i++ ]) ) {
-      fn.call();
+  window.setTimeout(function(){
+    oo.video._hasPermission = true;
+    if ( oo.video._listenerQueue ) {
+      var fn, i = 0;
+      while ( (fn = oo.video._listenerQueue[ i++ ]) ) {
+        fn.call();
+      }
+      oo.video._listenerQueue = null;
     }
-    oo.video._listenerQueue = null;
-  }
+  }, 1000); // give native stuff a second to finish.
 }

@@ -1,0 +1,33 @@
+{
+  "name": "binoculars",
+  "version": "0.0.1",
+  "homepage": "https://github.com/tryggvigy/Binoculars",
+  "authors": [
+    "Tryggvi Gylfason <tryggvigy@gmail.com>"
+  ],
+  "description": "A Javascript data capturing library.",
+  "main": "dist/binoculars.js",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "oo",
+    "binoculars",
+    "binocularsJS",
+    "video-data"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    ".git",
+    ".gitignore",
+    ".jshintrc",
+    "node_modules",
+    "package.json",
+    "src",
+    "test"
+  ]
+}

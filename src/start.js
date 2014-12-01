@@ -1,2 +1,2 @@
 !function(){
-  var oo = {version: "0.6.0"};
+  var oo = {version: "0.0.1"};

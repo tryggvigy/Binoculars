@@ -1,14 +1,10 @@
 
-oo.algorithms.quantize = function(pixelArray, colorCount) {
-	return quantizeJsWrap(pixelArray, colorCount);
-}
-
 /*!
  * This function wraps quantize.js Copyright 2008 Nick Rabinowitz.
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
  */
 /*jshint ignore: start*/
-function quantizeJsWrap(pixelArray, colorCount) {
+oo.algorithms.quantize = function(pixelArray, colorCount) {
 	if (!pv) {
 	    var pv = {
 	        map: function(array, f) {

@@ -15,7 +15,7 @@
                 dominantColor.g +
                 dominantColor.b;
 
-  return (brightness < c.VERY_DARK) ? true : false;
+  return (brightness <= c.VERY_DARK) ? true : false;
 }
 
 oo.video.isDark = function(videoSrc){
@@ -27,7 +27,7 @@ oo.video.isDark = function(videoSrc){
                 dominantColor.g +
                 dominantColor.b;
 
-  return (brightness < c.DARK) ? true : false;
+  return (brightness > c.VERY_DARK && brightness <= c.DARK) ? true : false;
 }
 
 oo.video.isBright = function(videoSrc){
@@ -39,7 +39,7 @@ oo.video.isBright = function(videoSrc){
                 dominantColor.g +
                 dominantColor.b;
 
-  return (brightness < c.BRIGHT) ? true : false;
+  return (brightness >= c.DARK && brightness < c.BRIGHT) ? true : false;
 }
 
 oo.video.isVeryBright = function(videoSrc){
@@ -51,7 +51,7 @@ oo.video.isVeryBright = function(videoSrc){
                 dominantColor.g +
                 dominantColor.b;
 
-  return (brightness > c.VERY_BRIGHT) ? true : false;
+  return (brightness >= c.BRIGHT) ? true : false;
 }
 
 oo.video.getBrightness = function(videoSrc) {

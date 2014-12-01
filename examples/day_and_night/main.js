@@ -21,7 +21,7 @@ $(document).ready(function() {
     },
     quote : {
       day : '“Today is the first day of the rest of your life.”',
-      night : "“Loneliness adds beauty to life. It puts a special burn on sunsets and makes night air smell better.”"
+      night : "“I like the night. Without the dark, we'd never see the stars.”"
     }
   }
 
@@ -33,7 +33,7 @@ $(document).ready(function() {
 
 
   function init() {
-    if(oo.video.isDark(webcam)) {
+    if(oo.video.getBrightness(webcam)< 0.3) {
       setNight();
     }
     else {

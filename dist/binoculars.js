@@ -1,5 +1,5 @@
 !function(){
-  var oo = {version: "0.6.0"};
+  var oo = {version: "0.0.1"};
 
 oo._support = {}
 
@@ -50,16 +50,12 @@ oo._support.CanvasImage.prototype.removeCanvas = function () {
 oo.algorithms = {};
 
 
-oo.algorithms.quantize = function(pixelArray, colorCount) {
-	return quantizeJsWrap(pixelArray, colorCount);
-}
-
 /*!
  * This function wraps quantize.js Copyright 2008 Nick Rabinowitz.
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
  */
 /*jshint ignore: start*/
-function quantizeJsWrap(pixelArray, colorCount) {
+oo.algorithms.quantize = function(pixelArray, colorCount) {
 	if (!pv) {
 	    var pv = {
 	        map: function(array, f) {
@@ -510,14 +506,16 @@ oo.video.onPermission = function(listener) {
 }
 
 oo.video.gotPermission = function() {
-  oo.video._hasPermission = true;
-  if ( oo.video._listenerQueue ) {
-    var fn, i = 0;
-    while ( (fn = oo.video._listenerQueue[ i++ ]) ) {
-      fn.call();
+  window.setTimeout(function(){
+    oo.video._hasPermission = true;
+    if ( oo.video._listenerQueue ) {
+      var fn, i = 0;
+      while ( (fn = oo.video._listenerQueue[ i++ ]) ) {
+        fn.call();
+      }
+      oo.video._listenerQueue = null;
     }
-    oo.video._listenerQueue = null;
-  }
+  }, 1000); // give native stuff a second to finish.
 }
 oo.video.register = function (videoSrc) {
 
@@ -575,7 +573,7 @@ oo.video.register = function (videoSrc) {
                 dominantColor.g +
                 dominantColor.b;
 
-  return (brightness < c.VERY_DARK) ? true : false;
+  return (brightness <= c.VERY_DARK) ? true : false;
 }
 
 oo.video.isDark = function(videoSrc){
@@ -587,7 +585,7 @@ oo.video.isDark = function(videoSrc){
                 dominantColor.g +
                 dominantColor.b;
 
-  return (brightness < c.DARK) ? true : false;
+  return (brightness > c.VERY_DARK && brightness <= c.DARK) ? true : false;
 }
 
 oo.video.isBright = function(videoSrc){
@@ -599,7 +597,7 @@ oo.video.isBright = function(videoSrc){
                 dominantColor.g +
                 dominantColor.b;
 
-  return (brightness < c.BRIGHT) ? true : false;
+  return (brightness >= c.DARK && brightness < c.BRIGHT) ? true : false;
 }
 
 oo.video.isVeryBright = function(videoSrc){
@@ -611,7 +609,7 @@ oo.video.isVeryBright = function(videoSrc){
                 dominantColor.g +
                 dominantColor.b;
 
-  return (brightness > c.VERY_BRIGHT) ? true : false;
+  return (brightness >= c.BRIGHT) ? true : false;
 }
 
 oo.video.getBrightness = function(videoSrc) {
