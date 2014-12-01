@@ -8,6 +8,8 @@ Oh yeah, here are the current main usecases for Binoculars:
 * Read color and brightness data from &lt;video&gt; elements in order to do stuff
 * Stylesheet shuffling based on color or brightness level in the enviroment of the user.
 
+[Documentation](https://github.com/tryggvigy/Binoculars/wiki/Documentation)
+
 
 Putting on your binoculars
 ------------
@@ -41,7 +43,6 @@ Things to come
 
 * Hopefully reading audio data from users
 * More ways to catch more data
-* Documentation
 * More rigorous unit testing
 
 
