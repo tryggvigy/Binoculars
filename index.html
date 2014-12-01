@@ -1,92 +1,102 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Binoculars : A Javascript data capturing library.">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/monokai.css">
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="description" content="Binoculars : A Javascript data capturing library.">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/monokai.css">
 
-    <title>Binoculars</title>
-  </head>
+  <title>Binoculars</title>
+</head>
 
-  <body>
+<body>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/tryggvigy/Binoculars">View on GitHub</a>
+  <!-- HEADER -->
+  <div id="header_wrap" class="outer">
+      <header class="inner">
+        <a id="forkme_banner" href="https://github.com/tryggvigy/Binoculars">View on GitHub</a>
 
-          <h1 id="project_title">Binoculars</h1>
-          <h2 id="project_tagline">A Javascript data capturing library.</h2>
+        <h1 id="project_title">Binoculars</h1>
+        <h2 id="project_tagline">A Javascript data capturing library.</h2>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/tryggvigy/Binoculars/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/tryggvigy/Binoculars/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
+          <section id="downloads">
+            <a class="zip_download_link" href="https://github.com/tryggvigy/Binoculars/zipball/master">Download this project as a .zip file</a>
+            <a class="tar_download_link" href="https://github.com/tryggvigy/Binoculars/tarball/master">Download this project as a tar.gz file</a>
+          </section>
+      </header>
+  </div>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcom to the Demos page for Binoculars</h3>
+  <!-- MAIN CONTENT -->
+  <div id="main_content_wrap" class="outer">
+    <section id="main_content" class="inner">
 
-<p>On this page, demos of use cases will be shown and basic information about the project displayed. Maybe the documentation will end up here instead of the github wiki.</p>
-<p>The demos need access to the device camera in order to function. Relax, it's not recording you... but you don't have to believe me, just <a href="https://github.com/tryggvigy/Binoculars">see for yourself</a></p>
+      <h3></a>Welcom to the Demos page for Binoculars</h3>
 
-<h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Binoculars</h3>
+      <p>The <a href="#demos">demos</a> need access to the device camera in order to function. Relax, it's not recording you... but you don't have to believe me, <a href="https://github.com/tryggvigy/Binoculars">see for yourself</a></p>
 
-<p>Binoculars is a open source data capturing library written in javascript. It's main purpose is to allow easy access to all kinds of data. At the moment, it's main use case would be capturing data from &lt;video&gt; HTML5 elements.</p>
-<p>The syntax used is <i>oo</i> (mimicing binoculars). Here we grab the brightness level from a video element.</p>
-<pre><code data-language="javascript">
-  var videoElem = document.getElementById("webcam");
 
-  //brightness will be a number between 0 and 1
-  var brightness = oo.video.getBrightness(videoElem);
+      <h3>Installation</h3>
 
-  if(brightness &lt; 0.3) {
-    // Do dark stuff...
-  }
-</code></pre>
+      <pre>bower install binoculars</pre>
+      <p>Then in your html file add:</p>
+      <pre>&lt;script src="bower_components/binoculars/dist/binoculars.js"&gt;&lt;/script&gt;</pre>
+      <p>done.</p>
+      <p class="lame_install">Alternatively, fetch it manually from 
+        <a href="https://github.com/tryggvigy/Binoculars/tree/master/dist">github</a>
+      </p>
 
-<h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demos</h3>
 
-<p><a href="examples/day_and_night">Hot swapping stylesheets depending on the user's environmental lighting</a> (If it's dark, turn on the lights. If it's light, put your hand over the camera.)</p>
-<p><a href="examples/colors">Reading color and brightness data from &lt;video&gt;</a></p>
+      <h3>Binoculars</h3>
 
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+      <p>Binoculars is a open source data capturing library written in javascript. It's main purpose is to allow easy access to all kinds of data. At the moment, it's main use case would be capturing data from &lt;video&gt; HTML5 elements.</p>
+      <p>The syntax used is <i>oo</i> (mimicking binoculars). Here we grab the brightness level from a video element.</p>
+      <pre><code data-language="javascript">
+        var videoElem = document.getElementById("webcam");
 
-<p> The library is brand new and all pull requests are greatly appreciated. 
-    If you have any feedback or questions, contact me at <a href="mailto:tryggvigy@gmail.com">tryggvigy@gmail.com</a> and I’ll get back to you as soon as possible.</p>
-      </section>
-    </div>
+        //brightness will be a number between 0 and 1
+        var brightness = oo.video.getBrightness(videoElem);
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Binoculars maintained by <a href="https://github.com/tryggvigy">tryggvigy</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
+        if(brightness &lt; 0.3) {
+          // Do dark stuff...
+        }
+      </code></pre>
 
-              <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              var pageTracker = _gat._getTracker("UA-54263009-1");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
+
+      <h3 id="demos">Demos</h3>
+
+      <p><a href="examples/day_and_night">Hot swapping stylesheets depending on the user's environmental lighting</a> (If it's dark, turn on the lights. If it's light, put your hand over the camera.)</p>
+      <p><a href="examples/colors">Reading color and brightness data from &lt;video&gt;</a></p>
+
+
+      <h3>Support or Contact</h3>
+
+      <p>The library is brand new and all pull requests are greatly appreciated. 
+      If you have any feedback or questions, contact me at <a href="mailto:tryggvigy@gmail.com">tryggvigy@gmail.com</a> and I’ll get back to you as soon as possible.</p>
+    </section>
+  </div>
+
+  <!-- FOOTER  -->
+  <div id="footer_wrap" class="outer">
+    <footer class="inner">
+      <p class="copyright">Binoculars maintained by <a href="https://github.com/tryggvigy">tryggvigy</a></p>
+      <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+    </footer>
+  </div>
+
+  <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+    try {
+      var pageTracker = _gat._getTracker("UA-54263009-1");
+    pageTracker._trackPageview();
+    } catch(err) {}
+  </script>
 
   <script src="javascripts/rainbow-custom.min.js"></script>
   </body>
