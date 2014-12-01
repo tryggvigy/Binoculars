@@ -24,6 +24,7 @@
     "bower_components",
     ".git",
     ".gitignore",
+    "gulpfile.js",
     ".jshintrc",
     "node_modules",
     "package.json",
