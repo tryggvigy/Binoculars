@@ -9,8 +9,22 @@ Oh yeah, here are the current main usecases for Binoculars:
 * Stylesheet shuffling based on color or brightness level in the enviroment of the user.
 
 
-Assembling your Binoculars
----------------------------
+Putting on your binoculars
+------------
+
+	bower install binoculars
+
+Then in your html file add:
+
+	<script src="bower_components/binoculars/dist/binoculars.js"></script>
+
+done.
+
+Or you can just shuffle over to the dist folder up there and fetch it. &#8679;
+
+
+Assembling your own Binoculars
+------------------------------
 
 If you are not familiar with gulp then [check them out](http://gulpjs.com/).
 
@@ -37,8 +51,8 @@ Note
 This technology is relatively new and has
 limited browser support (Firefox and Chrome last few versions)
 
-If you want some more info see this 
-[html5rocks](http://www.html5rocks.com/en/tutorials/getusermedia/intro/) article or the 
+If you want some more info see this
+[html5rocks](http://www.html5rocks.com/en/tutorials/getusermedia/intro/) article or the
 W3C [Device APIs Working Group](http://www.w3.org/2009/dap/)
 
 Thanks
