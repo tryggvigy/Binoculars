@@ -637,7 +637,6 @@ function getBrightnessConst() {
     VERY_BRIGHT   : BRIGHTNESS_STEP*4
   };
 }
-
 oo.video.getPixels = function(videoSrc) {
   var image      = new oo._support.CanvasImage(videoSrc);
   var imageData  = image.getImageData();
@@ -715,6 +714,23 @@ oo.video.color.dominantColor = function(videoSrc, quality) {
   var colPalette = oo.video.color.colorPalette(videoSrc, 5, quality);
   var dominantColor = colPalette[0];
   return dominantColor;
+}
+oo.detect = {};
+
+oo.detect.usingFirefox = function(){
+
+  return new Promise(function (fulfill, reject){
+    var hasFirefox,
+        firefoxImg = document.createElement("img");
+        firefoxImg.addEventListener("load", function(e){
+            fulfill(hasFirefox = true)
+        }, false);
+        firefoxImg.addEventListener("error", function(e){
+            fulfill(hasFirefox = false);
+        }, false);
+
+    firefoxImg.setAttribute("src", "about:logo");
+  });
 }
 
   if (typeof define === "function" && define.amd) define(oo);

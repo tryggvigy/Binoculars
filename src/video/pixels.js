@@ -1,5 +1,3 @@
-import "../support/canvas-image";
-
 oo.video.getPixels = function(videoSrc) {
   var image      = new oo._support.CanvasImage(videoSrc);
   var imageData  = image.getImageData();

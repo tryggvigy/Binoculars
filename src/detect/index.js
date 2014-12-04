@@ -1,0 +1,3 @@
+oo.detect = {};
+
+import "firefox";
