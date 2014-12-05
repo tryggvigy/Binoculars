@@ -2,7 +2,7 @@ describe('oo_CanvasImage', function(){
   var fakeSrc;
   // In order to create the ImageData object we need to go through a canvas.
   beforeEach('build a fake canvas/video source', function(){
-    fakeSrc = testUtils.generateFakeImageSrc();
+    fakeSrc = testUtils.fakeRedImgSrc();
   })
 
   it('should create a temporary canvas element under body', function(){

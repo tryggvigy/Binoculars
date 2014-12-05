@@ -1,4 +1,4 @@
-oo.video.getPixels = function(videoSrc) {
+oo_video.getPixels = function() {
   var image      = new oo._support.CanvasImage(videoSrc);
   var imageData  = image.getImageData();
   var pixels     = imageData.data;
@@ -9,7 +9,7 @@ oo.video.getPixels = function(videoSrc) {
   return pixels;
 };
 
-oo.video.getPixelCount = function(videoSrc) {
+oo_video.getPixelCount = function() {
   var image = new oo._support.CanvasImage(videoSrc);
 
   // Clean up

@@ -3,7 +3,7 @@ var testUtils = {};
 // returns a object containing the ImageData object created and a
 // 100x100 canvas element containing the ImageData.
 // This is needed because we can only create a ImageData object through a canvas.
-testUtils.generateFakeImageSrc = function() {
+testUtils.fakeRedImgSrc = function() {
   var canvas = document.createElement('canvas')
   canvas.width = 100;
   canvas.height = 100;

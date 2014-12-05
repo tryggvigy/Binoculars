@@ -8,7 +8,7 @@
  * Creative Commons Attribution 2.5 License:
  * http://creativecommons.org/licenses/by/2.5/
  */
- oo.video.color.colorPalette = function(videoSrc, colorCount, quality) {
+ oo_video.color.colorPalette = function(colorCount, quality) {
 
   if (typeof colorCount === 'undefined') {
         colorCount = 10;

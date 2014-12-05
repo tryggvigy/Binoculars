@@ -492,172 +492,12 @@ oo.algorithms.quantize = function(pixelArray, colorCount) {
 	return MMCQ.quantize(pixelArray, colorCount);
 };
 /*jshint ignore: end*/
-oo.video = {};
+oo.video = function(videoSrc) {
+  var oo_video = this;
+  oo_video.origin = videoSrc;
 
-oo.video._hasPermission = false;
-oo.video._listenerQueue = [];
 
-oo.video.onPermission = function(listener) {
-  if ( oo.video._hasPermission ) {
-      listener.call();
-  } else {
-      oo.video._listenerQueue.push( listener );
-  }
-}
-
-oo.video.gotPermission = function() {
-  window.setTimeout(function(){
-    oo.video._hasPermission = true;
-    if ( oo.video._listenerQueue ) {
-      var fn, i = 0;
-      while ( (fn = oo.video._listenerQueue[ i++ ]) ) {
-        fn.call();
-      }
-      oo.video._listenerQueue = null;
-    }
-  }, 1000); // give native stuff a second to finish.
-}
-oo.video.register = function (videoSrc) {
-
-  var hasGetUserMedia = function() {
-    return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
-              navigator.mozGetUserMedia || navigator.msGetUserMedia);
-  }
-
-  if (!hasGetUserMedia()) {
-    throw new Error("init(): Sorry, your browser does not support this behaviour");
-  }
-
-    var permissions = { "video": true };
-
-    var videoListenerError = function(error) {
-      console.error("Video capture error: ", error);
-    };
-
-    // Put video listeners into place
-    if(navigator.getUserMedia) { // Standard
-      navigator.getUserMedia(permissions, function(stream) {
-        videoSrc.src = stream;
-        videoSrc.play();
-        oo.video.gotPermission();
-      }, videoListenerError);
-    } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
-      navigator.webkitGetUserMedia(permissions, function(stream){
-        videoSrc.src = window.webkitURL.createObjectURL(stream);
-        videoSrc.play();
-        oo.video.gotPermission();
-      }, videoListenerError);
-    }
-    else if(navigator.mozGetUserMedia) { // Firefox-prefixed
-      navigator.mozGetUserMedia(permissions, function(stream){
-        videoSrc.src = window.URL.createObjectURL(stream);
-        videoSrc.play();
-        oo.video.gotPermission();
-      }, videoListenerError);
-    }
-}
-/**
- * Checks the brightness of the dominant color of the video element snapshot.
- * because 255,255,255 == white(light) and 0,0,0 == black(dark)
- * we can know the sum: 765 is the brightest color.
- * From this, brightness level is divided into categories.
- * The following boolean functions boundary check a given videoSrc
- * agains it's respective category.
- */
- oo.video.isVeryDark = function(videoSrc){
-  var c = getBrightnessConst();
-  var dominantColor = oo.video.color.dominantColor(videoSrc);
-      dominantColor = oo._support.toColorObj(dominantColor);
-
-  var brightness = dominantColor.r +
-                dominantColor.g +
-                dominantColor.b;
-
-  return (brightness <= c.VERY_DARK) ? true : false;
-}
-
-oo.video.isDark = function(videoSrc){
-  var c = getBrightnessConst();
-  var dominantColor = oo.video.color.dominantColor(videoSrc);
-      dominantColor = oo._support.toColorObj(dominantColor);
-
-  var brightness = dominantColor.r +
-                dominantColor.g +
-                dominantColor.b;
-
-  return (brightness > c.VERY_DARK && brightness <= c.DARK) ? true : false;
-}
-
-oo.video.isBright = function(videoSrc){
-  var c = getBrightnessConst();
-  var dominantColor = oo.video.color.dominantColor(videoSrc);
-      dominantColor = oo._support.toColorObj(dominantColor);
-
-  var brightness = dominantColor.r +
-                dominantColor.g +
-                dominantColor.b;
-
-  return (brightness >= c.DARK && brightness < c.BRIGHT) ? true : false;
-}
-
-oo.video.isVeryBright = function(videoSrc){
-  var c = getBrightnessConst();
-  var dominantColor = oo.video.color.dominantColor(videoSrc);
-      dominantColor = oo._support.toColorObj(dominantColor);
-
-  var brightness = dominantColor.r +
-                dominantColor.g +
-                dominantColor.b;
-
-  return (brightness >= c.BRIGHT) ? true : false;
-}
-
-oo.video.getBrightness = function(videoSrc) {
-  var c = getBrightnessConst();
-  var dominantColor = oo.video.color.dominantColor(videoSrc, 5);
-  dominantColor = oo._support.toColorObj(dominantColor);
-
-  var brightness = dominantColor.r +
-                dominantColor.g +
-                dominantColor.b;
-
-  return brightness/c.MAX_BRIGHTNESS;
-}
-
-function getBrightnessConst() {
-  var MAX_BRIGHTNESS = 765,
-      BRIGHTNESS_CONSTANT = 7, //higher constant => more colors categorized as "bright"
-      BRIGHTNESS_STEP   = MAX_BRIGHTNESS/BRIGHTNESS_CONSTANT; //TODO COLOR_STEP is not whole, spectrum contains holes.
-
-  return {
-    MAX_BRIGHTNESS: 765,
-    VERY_DARK     : BRIGHTNESS_STEP*1,
-    DARK          : BRIGHTNESS_STEP*2,
-    BRIGHT        : BRIGHTNESS_STEP*3,
-    VERY_BRIGHT   : BRIGHTNESS_STEP*4
-  };
-}
-oo.video.getPixels = function(videoSrc) {
-  var image      = new oo._support.CanvasImage(videoSrc);
-  var imageData  = image.getImageData();
-  var pixels     = imageData.data;
-
-  // Clean up
-  image.removeCanvas();
-
-  return pixels;
-};
-
-oo.video.getPixelCount = function(videoSrc) {
-  var image = new oo._support.CanvasImage(videoSrc);
-
-  // Clean up
-  image.removeCanvas();
-
-  return image.getPixelCount();
-};
-
-oo.video.color = {};
+oo_video.color = {};
 
 /*!
  * This function wraps
@@ -669,7 +509,7 @@ oo.video.color = {};
  * Creative Commons Attribution 2.5 License:
  * http://creativecommons.org/licenses/by/2.5/
  */
- oo.video.color.colorPalette = function(videoSrc, colorCount, quality) {
+ oo_video.color.colorPalette = function(colorCount, quality) {
 
   if (typeof colorCount === 'undefined') {
         colorCount = 10;
@@ -710,10 +550,157 @@ oo.video.color = {};
 
   return thePalette;
 };
-oo.video.color.dominantColor = function(videoSrc, quality) {
-  var colPalette = oo.video.color.colorPalette(videoSrc, 5, quality);
+oo_video.color.dominantColor = function(quality) {
+  var colPalette = oo_video.color.colorPalette(5, quality);
   var dominantColor = colPalette[0];
   return dominantColor;
+}
+/**
+ * Checks the brightness of the dominant color of the video element snapshot.
+ * because 255,255,255 == white(light) and 0,0,0 == black(dark)
+ * we can know the sum: 765 is the brightest color.
+ * From this, brightness level is divided into categories.
+ * The following boolean functions boundary check a given videoSrc
+ * agains it's respective category.
+ */
+ oo_video.isVeryDark = function(){
+  var c = getBrightnessConst();
+  var dominantColor = oo_video.color.dominantColor(videoSrc);
+      dominantColor = oo._support.toColorObj(dominantColor);
+
+  var brightness = dominantColor.r +
+                dominantColor.g +
+                dominantColor.b;
+
+  return (brightness <= c.VERY_DARK) ? true : false;
+}
+
+oo_video.isDark = function(){
+  var c = getBrightnessConst();
+  var dominantColor = oo_video.color.dominantColor(videoSrc);
+      dominantColor = oo._support.toColorObj(dominantColor);
+
+  var brightness = dominantColor.r +
+                dominantColor.g +
+                dominantColor.b;
+
+  return (brightness > c.VERY_DARK && brightness <= c.DARK) ? true : false;
+}
+
+oo_video.isBright = function(){
+  var c = getBrightnessConst();
+  var dominantColor = oo_video.color.dominantColor(videoSrc);
+      dominantColor = oo._support.toColorObj(dominantColor);
+
+  var brightness = dominantColor.r +
+                dominantColor.g +
+                dominantColor.b;
+
+  return (brightness >= c.DARK && brightness < c.BRIGHT) ? true : false;
+}
+
+oo_video.isVeryBright = function(){
+  var c = getBrightnessConst();
+  var dominantColor = oo_video.color.dominantColor(videoSrc);
+      dominantColor = oo._support.toColorObj(dominantColor);
+
+  var brightness = dominantColor.r +
+                dominantColor.g +
+                dominantColor.b;
+
+  return (brightness >= c.BRIGHT) ? true : false;
+}
+
+oo_video.getBrightness = function() {
+  var c = getBrightnessConst();
+  var dominantColor = oo_video.color.dominantColor(videoSrc, 5);
+  dominantColor = oo._support.toColorObj(dominantColor);
+
+  var brightness = dominantColor.r +
+                dominantColor.g +
+                dominantColor.b;
+
+  return brightness/c.MAX_BRIGHTNESS;
+}
+
+function getBrightnessConst() {
+  var MAX_BRIGHTNESS = 765,
+      BRIGHTNESS_CONSTANT = 7, //higher constant => more colors categorized as "bright"
+      BRIGHTNESS_STEP   = MAX_BRIGHTNESS/BRIGHTNESS_CONSTANT; //TODO COLOR_STEP is not whole, spectrum contains holes.
+
+  return {
+    MAX_BRIGHTNESS: 765,
+    VERY_DARK     : BRIGHTNESS_STEP*1,
+    DARK          : BRIGHTNESS_STEP*2,
+    BRIGHT        : BRIGHTNESS_STEP*3,
+    VERY_BRIGHT   : BRIGHTNESS_STEP*4
+  };
+}
+oo_video.getPixels = function() {
+  var image      = new oo._support.CanvasImage(videoSrc);
+  var imageData  = image.getImageData();
+  var pixels     = imageData.data;
+
+  // Clean up
+  image.removeCanvas();
+
+  return pixels;
+};
+
+oo_video.getPixelCount = function() {
+  var image = new oo._support.CanvasImage(videoSrc);
+
+  // Clean up
+  image.removeCanvas();
+
+  return image.getPixelCount();
+};
+oo_video.getPermission = function () {
+
+  var hasGetUserMedia = function() {
+    return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+              navigator.mozGetUserMedia || navigator.msGetUserMedia);
+  }
+
+  if (!hasGetUserMedia()) {
+    throw new Error("getPermission(): Sorry, your browser does not support this behaviour");
+  }
+  var permissions = { "video": true };
+
+  return new Promise(function (fulfill, reject){
+    // Put video listeners into place
+    if(navigator.getUserMedia) { // Standard
+      navigator.getUserMedia(permissions, function(stream) {
+        videoSrc.src = stream;
+        videoSrc.play();
+        window.setTimeout(function(){ //give nativ stuff a second to finish
+          fulfill(videoSrc);
+        }, 1000);
+      }, reject);
+    } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+      navigator.webkitGetUserMedia(permissions, function(stream){
+        videoSrc.src = window.webkitURL.createObjectURL(stream);
+        videoSrc.play();
+        window.setTimeout(function(){
+          fulfill(videoSrc);
+        }, 1000);
+      }, reject);
+    }
+    else if(navigator.mozGetUserMedia) { // Firefox-prefixed
+      navigator.mozGetUserMedia(permissions, function(stream){
+        videoSrc.src = window.URL.createObjectURL(stream);
+        videoSrc.play();
+        window.setTimeout(function(){
+          fulfill(videoSrc);
+        }, 1000);
+      }, reject);
+    }
+  });
+}
+
+  if (oo_video === oo) {
+    return new oo.video(videoSrc);
+  }
 }
 oo.detect = {};
 

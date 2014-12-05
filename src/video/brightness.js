@@ -6,9 +6,9 @@
  * The following boolean functions boundary check a given videoSrc
  * agains it's respective category.
  */
- oo.video.isVeryDark = function(videoSrc){
+ oo_video.isVeryDark = function(){
   var c = getBrightnessConst();
-  var dominantColor = oo.video.color.dominantColor(videoSrc);
+  var dominantColor = oo_video.color.dominantColor(videoSrc);
       dominantColor = oo._support.toColorObj(dominantColor);
 
   var brightness = dominantColor.r +
@@ -18,9 +18,9 @@
   return (brightness <= c.VERY_DARK) ? true : false;
 }
 
-oo.video.isDark = function(videoSrc){
+oo_video.isDark = function(){
   var c = getBrightnessConst();
-  var dominantColor = oo.video.color.dominantColor(videoSrc);
+  var dominantColor = oo_video.color.dominantColor(videoSrc);
       dominantColor = oo._support.toColorObj(dominantColor);
 
   var brightness = dominantColor.r +
@@ -30,9 +30,9 @@ oo.video.isDark = function(videoSrc){
   return (brightness > c.VERY_DARK && brightness <= c.DARK) ? true : false;
 }
 
-oo.video.isBright = function(videoSrc){
+oo_video.isBright = function(){
   var c = getBrightnessConst();
-  var dominantColor = oo.video.color.dominantColor(videoSrc);
+  var dominantColor = oo_video.color.dominantColor(videoSrc);
       dominantColor = oo._support.toColorObj(dominantColor);
 
   var brightness = dominantColor.r +
@@ -42,9 +42,9 @@ oo.video.isBright = function(videoSrc){
   return (brightness >= c.DARK && brightness < c.BRIGHT) ? true : false;
 }
 
-oo.video.isVeryBright = function(videoSrc){
+oo_video.isVeryBright = function(){
   var c = getBrightnessConst();
-  var dominantColor = oo.video.color.dominantColor(videoSrc);
+  var dominantColor = oo_video.color.dominantColor(videoSrc);
       dominantColor = oo._support.toColorObj(dominantColor);
 
   var brightness = dominantColor.r +
@@ -54,9 +54,9 @@ oo.video.isVeryBright = function(videoSrc){
   return (brightness >= c.BRIGHT) ? true : false;
 }
 
-oo.video.getBrightness = function(videoSrc) {
+oo_video.getBrightness = function() {
   var c = getBrightnessConst();
-  var dominantColor = oo.video.color.dominantColor(videoSrc, 5);
+  var dominantColor = oo_video.color.dominantColor(videoSrc, 5);
   dominantColor = oo._support.toColorObj(dominantColor);
 
   var brightness = dominantColor.r +

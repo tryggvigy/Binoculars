@@ -1,9 +1,5 @@
 $(document).ready(function() {
   var brightness;
-
-  var webcam = document.getElementById("webcam");
-  oo.video.register(webcam);
-
   var targets = {
     coverHeadingEl : $(".cover-heading"),
     coverImgEl : $(".cover-img"),
@@ -25,20 +21,21 @@ $(document).ready(function() {
     }
   }
 
-  oo.video.onPermission(function() {
-    window.setInterval(function(){
-      init();
-    }, 1000);
+  var webcam = document.getElementById("webcam");
+  var myVid = oo.video(webcam);
+  myVid.getPermission().then(init, function(err){
+    console.error("Video capture error: ", err);
   });
 
-
   function init() {
-    if(oo.video.getBrightness(webcam)< 0.3) {
-      setNight();
-    }
-    else {
-      setDay();
-    }
+    window.setInterval(function() {
+      if(myVid.isVeryDark()) {
+        setNight();
+      }
+      else {
+        setDay();
+      }
+    }, 1000);
   }
 
   function swapStyleSheet(sheet) {
