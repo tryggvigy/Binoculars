@@ -1,7 +1,9 @@
 window.addEventListener("DOMContentLoaded", function() {
 
-  var video = document.getElementById("video");
-  oo.video.register(video);
+  var videoEl = document.getElementById("video");
+  
+  var myVideo = oo.video(videoEl);
+  myVideo.getPermission();
 
   var brightness;
   var isVeryDark;
@@ -11,14 +13,15 @@ window.addEventListener("DOMContentLoaded", function() {
 
   // Trigger photo take
   document.getElementById("snap").addEventListener("click", function() {
-    var mainColor = oo.video.color.dominantColor(video);
+    var mainColor = myVideo.color.dominantColor();
     showColor(mainColor);
+    console.log(myVideo.origin);
 
-    isVeryDark = oo.video.isVeryDark(video);
-    isDark = oo.video.isDark(video);
-    isBright = oo.video.isBright(video);
-    isVeryBright = oo.video.isVeryBright(video);
-    brightness = oo.video.getBrightness(video);
+    isVeryDark = myVideo.isVeryDark();
+    isDark = myVideo.isDark();
+    isBright = myVideo.isBright();
+    isVeryBright = myVideo.isVeryBright();
+    brightness = myVideo.getBrightness();
 
     document.querySelector("#verydark").innerHTML = isVeryDark;
     document.querySelector("#dark").innerHTML = isDark;

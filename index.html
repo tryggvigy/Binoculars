@@ -55,20 +55,26 @@
       <p>Binoculars is a open source data capturing library written in javascript. It's main purpose is to allow easy access to all kinds of data. At the moment, it's main use case would be capturing data from &lt;video&gt; HTML5 elements.</p>
       <p>The syntax used is <i>oo</i> (mimicking binoculars). Here we grab the brightness level from a video element.</p>
       <pre><code data-language="javascript">
-        var videoElem = document.getElementById("webcam");
+        var videoElem = document.getElementById("webcam"),
+            videoSrc = oo.video(videoElem);
 
-        //brightness will be a number between 0 and 1
-        var brightness = oo.video.getBrightness(videoElem);
+        videoSrc.getPermission().then(doStuff);
 
-        if(brightness &lt; 0.3) {
-          // Do dark stuff...
+        function doStuff() {
+          //brightness will be a number between 0 and 1
+          var brightness = videoSrc.getBrightness();
+
+          if(brightness &lt; 0.1) {
+            // Do dark stuff...
+          }
         }
       </code></pre>
 
 
       <h3 id="demos">Demos</h3>
 
-      <p><a href="examples/day_and_night">Hot swapping stylesheets depending on the user's environmental lighting</a> (If it's dark, turn on the lights. If it's light, put your hand over the camera.)</p>
+      <p><a href="examples/day_and_night">Hot swapping stylesheets depending on the user's environmental lighting</a> 
+      <br>(If it's dark, turn on the lights. If it's light, put your hand over the camera.)</p>
       <p><a href="examples/colors">Reading color and brightness data from &lt;video&gt;</a></p>
 
 
